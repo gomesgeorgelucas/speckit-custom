@@ -1,11 +1,11 @@
 ---
-description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+description: Executa o fluxo de trabalho de planejamento de implementação usando o template de plano para gerar artefatos de design.
 handoffs: 
-  - label: Create Tasks
+  - label: Criar Tarefas
     agent: speckit.tasks
     prompt: Break the plan into tasks
     send: true
-  - label: Create Checklist
+  - label: Criar Checklist
     agent: speckit.checklist
     prompt: Create a checklist for the following domain...
 ---
@@ -16,74 +16,74 @@ handoffs:
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding (if not empty).
+Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiver vazio).
 
 ## Outline
 
-1. **Setup**: Run `.specify/scripts/powershell/setup-plan.ps1 -Json` from repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+1. **Configuração**: Execute `.specify/scripts/powershell/setup-plan.ps1 -Json` da raiz do repositório e analise o JSON para FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
 
-2. **Load context**: Read FEATURE_SPEC and `.specify/memory/constitution.md`. Load IMPL_PLAN template (already copied).
+2. **Carregar contexto**: Leia FEATURE_SPEC e `.specify/memory/constitution.md`. Carregue o template IMPL_PLAN (já copiado).
 
-3. **Execute plan workflow**: Follow the structure in IMPL_PLAN template to:
-   - Fill Technical Context (mark unknowns as "NEEDS CLARIFICATION")
-   - Fill Constitution Check section from constitution
-   - Evaluate gates (ERROR if violations unjustified)
-   - Phase 0: Generate research.md (resolve all NEEDS CLARIFICATION)
-   - Phase 1: Generate data-model.md, contracts/, quickstart.md
-   - Phase 1: Update agent context by running the agent script
-   - Re-evaluate Constitution Check post-design
+3. **Executar fluxo de plano**: Siga a estrutura no template IMPL_PLAN para:
+   - Preencher o Contexto Técnico (marque os desconhecidos como "NEEDS CLARIFICATION")
+   - Preencher a seção Constitution Check a partir da constituição
+   - Avaliar os gates (ERRO se houver violações injustificadas)
+   - Fase 0: Gerar research.md (resolver todos os NEEDS CLARIFICATION)
+   - Fase 1: Gerar data-model.md, contracts/, quickstart.md
+   - Fase 1: Atualizar o contexto do agente executando o script do agente
+   - Reavaliar o Constitution Check pós-design
 
-4. **Stop and report**: Command ends after Phase 2 planning. Report branch, IMPL_PLAN path, and generated artifacts.
+4. **Parar e relatar**: O comando termina após o planejamento da Fase 2. Relate a branch, o caminho do IMPL_PLAN e os artefatos gerados.
 
-## Phases
+## Fases
 
-### Phase 0: Outline & Research
+### Fase 0: Esboço e Pesquisa
 
-1. **Extract unknowns from Technical Context** above:
-   - For each NEEDS CLARIFICATION → research task
-   - For each dependency → best practices task
-   - For each integration → patterns task
+1. **Extrair desconhecidos do Contexto Técnico** acima:
+   - Para cada NEEDS CLARIFICATION → tarefa de pesquisa
+   - Para cada dependência → tarefa de melhores práticas
+   - Para cada integração → tarefa de padrões
 
-2. **Generate and dispatch research agents**:
+2. **Gerar e despachar agentes de pesquisa**:
 
    ```text
-   For each unknown in Technical Context:
-     Task: "Research {unknown} for {feature context}"
-   For each technology choice:
-     Task: "Find best practices for {tech} in {domain}"
+   Para cada desconhecido no Contexto Técnico:
+     Tarefa: "Pesquisar {unknown} para {feature context}"
+   Para cada escolha de tecnologia:
+     Tarefa: "Encontrar melhores práticas para {tech} no domínio {domain}"
    ```
 
-3. **Consolidate findings** in `research.md` using format:
-   - Decision: [what was chosen]
-   - Rationale: [why chosen]
-   - Alternatives considered: [what else evaluated]
+3. **Consolidar achados** em `research.md` usando o formato:
+   - Decisão: [o que foi escolhido]
+   - Racional: [por que foi escolhido]
+   - Alternativas consideradas: [o que mais foi avaliado]
 
-**Output**: research.md with all NEEDS CLARIFICATION resolved
+**Resultado**: research.md com todos os NEEDS CLARIFICATION resolvidos
 
-### Phase 1: Design & Contracts
+### Fase 1: Design e Contratos
 
-**Prerequisites:** `research.md` complete
+**Pré-requisitos:** `research.md` concluído
 
-1. **Extract entities from feature spec** → `data-model.md`:
-   - Entity name, fields, relationships
-   - Validation rules from requirements
-   - State transitions if applicable
+1. **Extrair entidades da spec da funcionalidade** → `data-model.md`:
+   - Nome da entidade, campos, relacionamentos
+   - Regras de validação dos requisitos
+   - Transições de estado, se aplicável
 
-2. **Generate API contracts** from functional requirements:
-   - For each user action → endpoint
-   - Use standard REST/GraphQL patterns
-   - Output OpenAPI/GraphQL schema to `/contracts/`
+2. **Gerar contratos de API** a partir dos requisitos funcionais:
+   - Para cada ação do usuário → endpoint
+   - Use padrões REST/GraphQL padrão
+   - Produza o esquema OpenAPI/GraphQL em `/contracts/`
 
-3. **Agent context update**:
-   - Run `.specify/scripts/powershell/update-agent-context.ps1 -AgentType copilot`
-   - These scripts detect which AI agent is in use
-   - Update the appropriate agent-specific context file
-   - Add only new technology from current plan
-   - Preserve manual additions between markers
+3. **Atualização do contexto do agente**:
+   - Execute `.specify/scripts/powershell/update-agent-context.ps1 -AgentType copilot`
+   - Estes scripts detectam qual agente de IA está em uso
+   - Atualize o arquivo de contexto específico do agente apropriado
+   - Adicione apenas tecnologia nova do plano atual
+   - Preserve adições manuais entre os marcadores
 
-**Output**: data-model.md, /contracts/*, quickstart.md, agent-specific file
+**Resultado**: data-model.md, /contracts/*, quickstart.md, arquivo específico do agente
 
-## Key rules
+## Regras principais
 
-- Use absolute paths
-- ERROR on gate failures or unresolved clarifications
+- Use caminhos absolutos
+- ERRO em falhas de gate ou esclarecimentos não resolvidos
