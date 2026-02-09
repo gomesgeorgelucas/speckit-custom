@@ -1,0 +1,3 @@
+---
+agent: doc.workspace-detection
+---

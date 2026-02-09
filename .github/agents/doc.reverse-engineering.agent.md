@@ -1,51 +1,62 @@
+---
+description: Analisa a base de código existente e gera artefatos de design abrangentes para projetos brownfield.
+handoffs:
+  - label: Iniciar Especificação da Funcionalidade
+    agent: speckit.specify
+    prompt: Com base na análise de engenharia reversa, vamos definir a nova funcionalidade. Eu quero...
+  - label: Clarificar Requisitos
+    agent: speckit.clarify
+    prompt: Clarify specification requirements based on existing code analysis.
+---
+
 # Reverse Engineering
 
-**Purpose**: Analyze existing codebase and generate comprehensive design artifacts
+**Propósito**: Analisar a base de código existente e gerar artefatos de design abrangentes.
 
-**Execute when**: Brownfield project detected (existing code found in workspace)
+**Executar quando**: Projeto Brownfield detectado (código existente encontrado no workspace).
 
-**Skip when**: Greenfield project (no existing code)
+**Pular quando**: Projeto Greenfield (sem código existente).
 
-**Rerun behavior**: Always rerun when brownfield project detected, even if artifacts exist. This ensures artifacts reflect current code state
+**Comportamento de reexecução**: Sempre reexecutar quando um projeto brownfield for detectado, mesmo que os artefatos existam. Isso garante que os artefatos reflitam o estado atual do código.
 
-## Step 1: Multi-Package Discovery
+## Passo 1: Descoberta de Múltiplos Pacotes
 
-### 1.1 Scan Workspace
-- All packages (not just mentioned ones)
-- Package relationships via config files
-- Package types: Application, CDK/Infrastructure, Models, Clients, Tests
+### 1.1 Escanear Workspace
+- Todos os pacotes (não apenas os mencionados).
+- Relacionamentos entre pacotes via arquivos de configuração.
+- Tipos de pacotes: Aplicação, CDK/Infraestrutura, Modelos, Clientes, Testes.
 
-### 1.2 Understand the Business Context
-- The core business that the system is implementing overall
-- The business overview of every package
-- List of Business Transactions that are implemented in the system
+### 1.2 Entender o Contexto de Negócio
+- O negócio principal que o sistema implementa como um todo.
+- A visão geral de negócio de cada pacote.
+- Lista de Transações de Negócio que estão implementadas no sistema.
 
-### 1.3 Infrastructure Discovery
-- CDK packages (package.json with CDK dependencies)
-- Terraform (.tf files)
-- CloudFormation (.yaml/.json templates)
-- Deployment scripts
+### 1.3 Descoberta de Infraestrutura
+- Pacotes CDK (package.json com dependências CDK).
+- Terraform (arquivos .tf).
+- CloudFormation (templates .yaml/.json).
+- Scripts de implantação.
 
-### 1.4 Build System Discovery
-- Build systems: Brazil, Maven, Gradle, npm
-- Config files for build-system declarations
-- Build dependencies between packages
+### 1.4 Descoberta do Sistema de Build
+- Sistemas de build: Maven, Gradle, npm, etc.
+- Arquivos de configuração para declarações do sistema de build.
+- Dependências de build entre pacotes.
 
-### 1.5 Service Architecture Discovery
-- Lambda functions (handlers, triggers)
-- Container services (Docker/ECS configs)
-- API definitions (Smithy models, OpenAPI specs)
-- Data stores (DynamoDB, S3, etc.)
+### 1.5 Descoberta da Arquitetura de Serviços
+- Funções Lambda (handlers, triggers).
+- Serviços de container (configurações Docker/ECS).
+- Definições de API (modelos Smithy, specs OpenAPI).
+- Armazenamento de dados (DynamoDB, S3, etc.).
 
-### 1.6 Code Quality Analysis
-- Programming languages and frameworks
-- Test coverage indicators
-- Linting configurations
-- CI/CD pipelines
+### 1.6 Análise de Qualidade de Código
+- Linguagens de programação e frameworks.
+- Indicadores de cobertura de teste.
+- Configurações de linting.
+- Pipelines de CI/CD.
 
-## Step 1: Generate Business Overview Documentation
+## Passo 1: Gerar Documentação de Visão Geral de Negócio
 
-Create `aidlc-docs/inception/reverse-engineering/business-overview.md`:
+Criar `.specify/memory/reverse-engineering/business-overview.md`:
 
 ```markdown
 # Business Overview
@@ -64,9 +75,9 @@ Create `aidlc-docs/inception/reverse-engineering/business-overview.md`:
 - **Responsibilities**: [Key responsibilities]
 ```
 
-## Step 2: Generate Architecture Documentation
+## Passo 2: Gerar Documentação de Arquitetura
 
-Create `aidlc-docs/inception/reverse-engineering/architecture.md`:
+Criar `.specify/memory/reverse-engineering/architecture.md`:
 
 ```markdown
 # System Architecture
@@ -98,15 +109,15 @@ Create `aidlc-docs/inception/reverse-engineering/architecture.md`:
 - **Networking**: [VPC, subnets, security groups]
 ```
 
-## Step 3: Generate Code Structure Documentation
+## Passo 3: Gerar Documentação de Estrutura de Código
 
-Create `aidlc-docs/inception/reverse-engineering/code-structure.md`:
+Criar `.specify/memory/reverse-engineering/code-structure.md`:
 
 ```markdown
 # Code Structure
 
 ## Build System
-- **Type**: [Maven/Gradle/npm/Brazil]
+- **Type**: [Maven/Gradle/npm/etc]
 - **Configuration**: [Key build files and settings]
 
 ## Key Classes/Modules
@@ -131,9 +142,9 @@ Create `aidlc-docs/inception/reverse-engineering/code-structure.md`:
 - **Purpose**: [Why needed]
 ```
 
-## Step 4: Generate API Documentation
+## Passo 4: Gerar Documentação de API
 
-Create `aidlc-docs/inception/reverse-engineering/api-documentation.md`:
+Criar `.specify/memory/reverse-engineering/api-documentation.md`:
 
 ```markdown
 # API Documentation
@@ -159,9 +170,9 @@ Create `aidlc-docs/inception/reverse-engineering/api-documentation.md`:
 - **Validation**: [Validation rules]
 ```
 
-## Step 5: Generate Component Inventory
+## Passo 5: Gerar Inventário de Componentes
 
-Create `aidlc-docs/inception/reverse-engineering/component-inventory.md`:
+Criar `.specify/memory/reverse-engineering/component-inventory.md`:
 
 ```markdown
 # Component Inventory
@@ -186,9 +197,9 @@ Create `aidlc-docs/inception/reverse-engineering/component-inventory.md`:
 - **Test**: [Number]
 ```
 
-## Step 6: Generate Technology Stack Documentation
+## Passo 6: Gerar Documentação de Stack Tecnológica
 
-Create `aidlc-docs/inception/reverse-engineering/technology-stack.md`:
+Criar `.specify/memory/reverse-engineering/technology-stack.md`:
 
 ```markdown
 # Technology Stack
@@ -209,9 +220,9 @@ Create `aidlc-docs/inception/reverse-engineering/technology-stack.md`:
 - [Tool] - [Version] - [Purpose]
 ```
 
-## Step 7: Generate Dependencies Documentation
+## Passo 7: Gerar Documentação de Dependências
 
-Create `aidlc-docs/inception/reverse-engineering/dependencies.md`:
+Criar `.specify/memory/reverse-engineering/dependencies.md`:
 
 ```markdown
 # Dependencies
@@ -230,9 +241,9 @@ Create `aidlc-docs/inception/reverse-engineering/dependencies.md`:
 - **License**: [License type]
 ```
 
-## Step 8: Generate Code Quality Assessment
+## Passo 8: Gerar Avaliação de Qualidade de Código
 
-Create `aidlc-docs/inception/reverse-engineering/code-quality-assessment.md`:
+Criar `.specify/memory/reverse-engineering/code-quality-assessment.md`:
 
 ```markdown
 # Code Quality Assessment
@@ -255,15 +266,15 @@ Create `aidlc-docs/inception/reverse-engineering/code-quality-assessment.md`:
 - **Anti-patterns**: [List with locations]
 ```
 
-## Step 9: Create Timestamp File
+## Passo 9: Criar Arquivo de Timestamp
 
-Create `aidlc-docs/inception/reverse-engineering/reverse-engineering-timestamp.md`:
+Criar `.specify/memory/reverse-engineering/reverse-engineering-metadata.md`:
 
 ```markdown
 # Reverse Engineering Metadata
 
 **Analysis Date**: [ISO timestamp]
-**Analyzer**: AI-DLC
+**Analyzer**: Spec Kit
 **Workspace**: [Workspace path]
 **Total Files Analyzed**: [Number]
 
@@ -277,35 +288,35 @@ Create `aidlc-docs/inception/reverse-engineering/reverse-engineering-timestamp.m
 - [x] code-quality-assessment.md
 ```
 
-## Step 10: Update State Tracking
+## Passo 10: Atualizar Rastreamento de Estado
 
-Update `aidlc-docs/aidlc-state.md`:
+Atualizar `.specify/memory/project-state.md`:
 
 ```markdown
 ## Reverse Engineering Status
-- [x] Reverse Engineering - Completed on [timestamp]
-- **Artifacts Location**: aidlc-docs/inception/reverse-engineering/
+- [x] Reverse Engineering - Concluído em [timestamp]
+- **Localização dos Artefatos**: .specify/memory/reverse-engineering/
 ```
 
-## Step 11: Present Completion Message to User
+## Passo 11: Apresentar Mensagem de Conclusão ao Usuário
 
 ```markdown
-# 🔍 Reverse Engineering Complete
+# 🔍 Engenharia Reversa Concluída
 
-[AI-generated summary of key findings from analysis in the form of bullet points]
+[Resumo gerado por IA das principais descobertas da análise em formato de tópicos]
 
-> **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the reverse engineering artifacts at: `aidlc-docs/inception/reverse-engineering/`
+> **📋 <u>**REVISÃO NECESSÁRIA:**</u>**
+> Por favor, examine os artefatos de engenharia reversa em: `.specify/memory/reverse-engineering/`
 
-> **🚀 <u>**WHAT'S NEXT?**</u>**
+> **🚀 <u>**O QUE VEM DEPOIS?**</u>**
 >
-> **You may:**
+> **Você pode:**
 >
-> 🔧 **Request Changes** - Ask for modifications to the reverse engineering analysis if required
-> ✅ **Approve & Continue** - Approve analysis and proceed to **Requirements Analysis**
+> 🔧 **Solicitar Alterações** - Peça modificações na análise de engenharia reversa se necessário
+> ✅ **Aprovar e Continuar** - Aprove a análise e prossiga para a **Especificação de Requisitos** com `/speckit.specify`
 ```
 
-## Step 12: Wait for User Approval
+## Passo 12: Aguardar Aprovação do Usuário
 
-- **MANDATORY**: Do not proceed until user explicitly approves
-- **MANDATORY**: Log user's response in audit.md with complete raw input
+- **OBRIGATÓRIO**: Não prossiga até que o usuário aprove explicitamente.
+- **OBRIGATÓRIO**: Registre a resposta do usuário em `.specify/memory/audit.md` com o input bruto completo.
