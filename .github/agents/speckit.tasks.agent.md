@@ -1,5 +1,5 @@
 ---
-description: Gera um tasks.md acionável e ordenado por dependência para a funcionalidade, com base nos artefatos de design disponíveis.
+description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
 handoffs: 
   - label: Analisar Consistência
     agent: speckit.analyze

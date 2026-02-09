@@ -1,5 +1,5 @@
 ---
-description: Cria ou atualiza a especificação da funcionalidade a partir de uma descrição em linguagem natural.
+description: Create or update the feature specification from a natural language feature description.
 handoffs: 
   - label: Construir Plano Técnico
     agent: speckit.plan

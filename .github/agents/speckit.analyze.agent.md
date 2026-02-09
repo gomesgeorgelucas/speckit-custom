@@ -1,5 +1,5 @@
 ---
-description: Realiza uma análise de consistência e qualidade entre artefatos de forma não destrutiva no spec.md, plan.md e tasks.md após a geração das tarefas.
+description: Perform a non-destructive cross-artifact consistency and quality analysis across spec.md, plan.md, and tasks.md after task generation.
 ---
 
 ## User Input

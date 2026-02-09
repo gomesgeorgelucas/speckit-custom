@@ -1,5 +1,5 @@
 ---
-description: Identifica áreas subespecificadas na especificação da funcionalidade atual, fazendo até 5 perguntas de esclarecimento altamente direcionadas e codificando as respostas de volta na spec.
+description: Identify underspecified areas in the current feature spec by asking up to 5 highly targeted clarification questions and encoding answers back into the spec.
 handoffs: 
   - label: Construir Plano Técnico
     agent: speckit.plan

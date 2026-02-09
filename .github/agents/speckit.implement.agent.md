@@ -1,5 +1,5 @@
 ---
-description: Executa o plano de implementação processando e executando todas as tarefas definidas em tasks.md
+description: Execute the implementation plan by processing and executing all tasks defined in tasks.md
 ---
 
 ## User Input

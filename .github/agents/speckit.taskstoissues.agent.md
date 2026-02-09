@@ -1,5 +1,5 @@
 ---
-description: Converte tarefas existentes em issues do GitHub acionáveis e ordenadas por dependência para a funcionalidade, com base nos artefatos de design disponíveis.
+description: Convert existing tasks into actionable, dependency-ordered GitHub issues for the feature based on available design artifacts.
 tools: ['github/github-mcp-server/issue_write']
 ---
 

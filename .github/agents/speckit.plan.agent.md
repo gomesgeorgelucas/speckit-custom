@@ -1,5 +1,5 @@
 ---
-description: Executa o fluxo de trabalho de planejamento de implementação usando o template de plano para gerar artefatos de design.
+description: Execute the implementation planning workflow using the plan template to generate design artifacts.
 handoffs: 
   - label: Criar Tarefas
     agent: speckit.tasks

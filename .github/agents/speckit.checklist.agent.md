@@ -1,5 +1,5 @@
 ---
-description: Gera um checklist personalizado para a funcionalidade atual com base nos requisitos do usuário.
+description: Generate a custom checklist for the current feature based on user requirements.
 ---
 
 ## Propósito do Checklist: "Testes Unitários para o Texto"

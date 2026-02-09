@@ -1,5 +1,5 @@
 ---
-description: Cria ou atualiza a constituição do projeto a partir de inputs de princípios interativos ou fornecidos, garantindo que todos os templates dependentes permaneçam sincronizados.
+description: Create or update the project constitution from interactive or provided principle inputs, ensuring all dependent templates stay in sync.
 handoffs: 
   - label: Construir Especificação
     agent: speckit.specify
