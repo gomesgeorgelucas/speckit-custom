@@ -1,0 +1,24 @@
+{
+	"servers": {
+		"figmaRemoteMcp": {
+			"url": "https://mcp.figma.com/mcp",
+			"type": "http"
+		},
+		"atlassianRovoRemoteMcp": {
+			"url": "https://mcp.atlassian.com/v1/mcp",
+			"type": "http"
+		},
+    "ado": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "${input:ado_org}"]
+    }
+	},
+	"inputs": [
+     {
+      "id": "ado_org",
+      "type": "promptString",
+      "description": "Nome da organização no Azure Devops  (e.g. 'BRFCode')"
+    }
+  ]
+}

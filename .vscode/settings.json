@@ -1,4 +1,5 @@
 {
+  "chat.mcp.gallery.enabled": true,
   "chat.tools.terminal.autoApprove": {
     ".specify/scripts/bash/": true,
     ".specify/scripts/powershell/": true,
@@ -136,6 +137,14 @@
         "speckit.plan": true,
         "speckit.tasks": true,
         "speckit.implement": true
+    },
+    "chat.mcp.serverSampling": {
+      "speckit-custom/.vscode/mcp.json: figmaRemoteMcp": {
+        "allowedModels": [
+          "copilot/gpt-5.2-codex",
+          "copilot/gpt-5-mini"
+        ]
+      }
     },
 }
 

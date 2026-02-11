@@ -2,6 +2,9 @@
 # macOS
 .DS_Store
 .AppleDouble
+# macOS
+.DS_Store
+.AppleDouble
 .LSOverride
 Icon
 ._*
@@ -15,8 +18,10 @@ VolumeIcon.icns
 ._*
 *~
 
-# Optional: editor/IDE
-.vscode/
+# Optional: editor/IDE - ignore everything inside .vscode except settings.json and mcp.json
+.vscode/*
+!.vscode/settings.json
+!.vscode/mcp.json
 .idea/
 
 # Python
@@ -29,6 +34,7 @@ node_modules/
 # Env files
 .env
 .env.local
+.env.dev
 
 # Build
 dist/
