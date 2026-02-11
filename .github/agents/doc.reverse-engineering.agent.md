@@ -19,6 +19,15 @@ handoffs:
 
 **Comportamento de reexecução**: Sempre reexecutar quando um projeto brownfield for detectado, mesmo que os artefatos existam. Isso garante que os artefatos reflitam o estado atual do código.
 
+## Pre-condições de Validação de Conteúdo
+
+- **Carregar Guias Comuns**: Antes de gerar qualquer arquivo em `.specify/memory/reverse-engineering/`, carregue e siga todas as diretrizes em `.specify/memory/common/` (por exemplo, `content-validation.md`, `ascii-diagram-standards.md`).
+- **Validação Obrigatória**: Valide todos os blocos de conteúdo (Mermaid, ASCII, YAML, JSON, código) de acordo com os guias. Não persista arquivos que não passem na validação.
+- **Mermaid e Regras Específicas**: Ao gerar diagramas Mermaid, assegure que IDs e labels sigam as regras (sem parênteses, escape de aspas, apenas alfanuméricos e underscore em IDs). Se o diagrama Mermaid falhar na validação, grave a alternativa em texto em vez do diagrama e documente a razão no arquivo de auditoria.
+- **Fallback e Registro**: Se qualquer validação falhar, gere a versão de fallback em texto (conforme padrões nos guias), registre o detalhe da falha em `.specify/memory/audit.md` e informe o usuário antes de prosseguir.
+- **Não Gravar Conteúdo Não Validado**: Em nenhuma circunstância escreva diagramas ou artefatos visuais não validados no repositório; use sempre a alternativa textual até que a validação seja satisfeita.
+
+
 ## Passo 1: Descoberta de Múltiplos Pacotes
 
 ### 1.1 Escanear Workspace

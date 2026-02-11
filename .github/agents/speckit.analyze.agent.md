@@ -24,7 +24,12 @@ Identificar inconsistências, duplicações, ambiguidades e itens subespecificad
 
 ### 1. Inicializar Contexto de Análise
 
-Execute `.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` uma vez a partir da raiz do repositório e analise o JSON para obter FEATURE_DIR e AVAILABLE_DOCS. Derive os caminhos absolutos:
+Execute o script de verificação de pré-requisitos uma vez a partir da raiz do repositório e analise o JSON para obter FEATURE_DIR e AVAILABLE_DOCS. Derive os caminhos absolutos:
+
+- **Windows**: `powershell -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` ou `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks`
+- **macOS / Linux**: `bash .specify/scripts/bash/check-prerequisites.sh -Json -RequireTasks -IncludeTasks`
+- **Fallback**: `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` se o script Bash não existir e PowerShell Core estiver instalado
+- Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot' (ou aspas duplas se possível: "I'm Groot").
 
 - SPEC = FEATURE_DIR/spec.md
 - PLAN = FEATURE_DIR/plan.md

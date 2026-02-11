@@ -30,9 +30,10 @@
 ## ANTES de criar qualquer arquivo com diagramas Mermaid:
 
 1. Verifique caracteres inválidos em IDs de nós (use apenas alfanuméricos + underscore)
-2. Escape caracteres especiais em rótulos: " → \" e ' → \'
-3. Valide a sintaxe do fluxograma: as conexões entre nós devem ser válidas
-4. Teste o processamento do diagrama com uma validação simples
+2. Não use parênteses: evite '(' ou ')' em IDs, nomes, rótulos ou labels (substitua por hífen, underscore ou remova)
+3. Escape caracteres especiais em rótulos: " → \" e ' → \'
+4. Valide a sintaxe do fluxograma: as conexões entre nós devem ser válidas
+5. Teste o processamento do diagrama com uma validação simples
 
 ## FALLBACK: Se a validação Mermaid falhar, use a representação do fluxo baseada em texto
 ```

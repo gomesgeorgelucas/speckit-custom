@@ -21,11 +21,16 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
 
 ## Outline
 
-1. **Configuração**: Execute `.specify/scripts/powershell/check-prerequisites.ps1 -Json` da raiz do repositório e analise o FEATURE_DIR e a lista AVAILABLE_DOCS. Todos os caminhos devem ser absolutos. Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
+1. **Configuração**: Execute o script de verificação de pré-requisitos a partir da raiz do repositório e analise o FEATURE_DIR e a lista AVAILABLE_DOCS. Todos os caminhos devem ser absolutos.
+   - **Windows**: `powershell -File .specify/scripts/powershell/check-prerequisites.ps1 -Json`
+   - **macOS / Linux**: `bash .specify/scripts/bash/check-prerequisites.sh -Json`
+   - **Fallback**: `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json` se o Bash script estiver ausente e PowerShell Core estiver instalado
+   Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
 
 2. **Carregar documentos de design**: Leia de FEATURE_DIR:
    - **Obrigatório**: plan.md (stack técnica, bibliotecas, estrutura), spec.md (histórias de usuário com prioridades)
    - **Opcional**: data-model.md (entidades), contracts/ (endpoints de API), research.md (decisões), quickstart.md (cenários de teste)
+   - **Se existirem artefatos de engenharia reversa** em `.specify/memory/reverse-engineering/` (por exemplo `architecture.md`, `code-structure.md`, `api-documentation.md`, `dependencies.md`, `component-inventory.md`), carregue-os e use-os para enriquecer a geração de tarefas: mapear componentes detectados, contratos existentes, decisões arquiteturais e dependências. Prefira informações concretas desses artefatos quando houver conflito com suposições do `plan.md`.
    - Nota: Nem todos os projetos possuem todos os documentos. Gere tarefas com base no que estiver disponível.
 
 3. **Executar fluxo de geração de tarefas**:

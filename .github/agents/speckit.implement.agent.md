@@ -12,7 +12,11 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
 
 ## Outline
 
-1. Execute `.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` da raiz do repositório e analise o FEATURE_DIR e a lista AVAILABLE_DOCS. Todos os caminhos devem ser absolutos. Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
+1. Execute o script de verificação de pré-requisitos a partir da raiz do repositório e analise o FEATURE_DIR e a lista AVAILABLE_DOCS. Todos os caminhos devem ser absolutos.
+   - **Windows**: `powershell -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks`
+   - **macOS / Linux**: `bash .specify/scripts/bash/check-prerequisites.sh -Json -RequireTasks -IncludeTasks`
+   - **Fallback**: `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks` se o Bash script estiver ausente e PowerShell Core estiver instalado
+   Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
 
 2. **Verificar status dos checklists** (se FEATURE_DIR/checklists/ existir):
    - Escaneie todos os arquivos de checklist no diretório checklists/
@@ -52,6 +56,7 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
    - **SE EXISTIR**: Leia contracts/ para especificações de API e requisitos de teste
    - **SE EXISTIR**: Leia research.md para decisões técnicas e restrições
    - **SE EXISTIR**: Leia quickstart.md para cenários de integração
+   - **SE EXISTIREM ARTEFATOS DE ENGENHARIA REVERSA**: Se `.specify/memory/reverse-engineering/` existir, leia `architecture.md`, `code-structure.md`, `api-documentation.md`, `dependencies.md` e outros artefatos gerados. Use esses artefatos para validar as tarefas em `tasks.md` (por exemplo, confirmar caminhos de arquivos, nomes de pacotes, contratos), preencher lacunas no plano de execução e detectar tarefas redundantes ou já concluídas. Se houver discrepâncias significativas entre `tasks.md` e os artefatos de engenharia reversa, alerte o usuário e recomende regenerar `tasks.md` usando `/speckit.tasks`.
 
 4. **Verificação de Configuração do Projeto**:
    - **OBRIGATÓRIO**: Crie/verifique arquivos de ignore com base na configuração real do projeto:

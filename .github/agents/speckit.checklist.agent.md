@@ -33,7 +33,10 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
 
 ## Passos de Execução
 
-1. **Configuração**: Execute `.specify/scripts/powershell/check-prerequisites.ps1 -Json` a partir da raiz do repositório e analise o JSON para obter FEATURE_DIR e a lista AVAILABLE_DOCS.
+1. **Configuração**: Execute o script de verificação de pré-requisitos a partir da raiz do repositório e analise o JSON para obter FEATURE_DIR e a lista AVAILABLE_DOCS.
+   - **Windows**: `powershell -File .specify/scripts/powershell/check-prerequisites.ps1 -Json` ou `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json`
+   - **macOS / Linux**: `bash .specify/scripts/bash/check-prerequisites.sh -Json`
+   - **Fallback**: `pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json` se o script Bash não existir e PowerShell Core estiver instalado
    - Todos os caminhos de arquivos devem ser absolutos.
    - Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot' (ou aspas duplas se possível: "I'm Groot").
 

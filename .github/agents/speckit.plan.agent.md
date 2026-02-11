@@ -20,9 +20,14 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
 
 ## Outline
 
-1. **Configuração**: Execute `.specify/scripts/powershell/setup-plan.ps1 -Json` da raiz do repositório e analise o JSON para FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
+1. **Configuração**: Execute o script de setup a partir da raiz do repositório e analise o JSON para FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH.
+   - **Windows**: `powershell -File .specify/scripts/powershell/setup-plan.ps1 -Json` ou `pwsh -File .specify/scripts/powershell/setup-plan.ps1 -Json`
+   - **macOS / Linux**: `bash .specify/scripts/bash/setup-plan.sh -Json`
+   - **Fallback**: Se o script Bash não existir, `pwsh -File .specify/scripts/powershell/setup-plan.ps1 -Json` pode ser usado em sistemas com PowerShell Core instalado.
+   Para aspas simples em argumentos como "I'm Groot", use a sintaxe de escape: ex: 'I'\''m Groot'.
 
 2. **Carregar contexto**: Leia FEATURE_SPEC e `.specify/memory/constitution.md`. Carregue o template IMPL_PLAN (já copiado).
+   - **Se existirem artefatos de engenharia reversa** em `.specify/memory/reverse-engineering/` (ex: `architecture.md`, `code-structure.md`, `api-documentation.md`), carregue-os e incorpore suas descobertas ao plano de implementação (componentes, dependências, arquitetura detectada). Dê prioridade às informações desses artefatos para preencher o Contexto Técnico e o Modelo de Dados.
 
 3. **Executar fluxo de plano**: Siga a estrutura no template IMPL_PLAN para:
    - Preencher o Contexto Técnico (marque os desconhecidos como "NEEDS CLARIFICATION")
@@ -75,8 +80,11 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
    - Produza o esquema OpenAPI/GraphQL em `/contracts/`
 
 3. **Atualização do contexto do agente**:
-   - Execute `.specify/scripts/powershell/update-agent-context.ps1 -AgentType copilot`
-   - Estes scripts detectam qual agente de IA está em uso
+    - **Atualizar o contexto do agente**:
+       - **Windows**: `powershell -File .specify/scripts/powershell/update-agent-context.ps1 -AgentType copilot`
+       - **macOS / Linux**: `bash .specify/scripts/bash/update-agent-context.sh -AgentType copilot`
+       - **Fallback**: `pwsh -File .specify/scripts/powershell/update-agent-context.ps1 -AgentType copilot` quando PowerShell Core estiver disponível em macOS/Linux
+    - Estes scripts detectam qual agente de IA está em uso
    - Atualize o arquivo de contexto específico do agente apropriado
    - Adicione apenas tecnologia nova do plano atual
    - Preserve adições manuais entre os marcadores

@@ -70,3 +70,5 @@ Você **DEVE** considerar o input do usuário antes de prosseguir (se não estiv
 - **Caminhos Absolutos**: Use sempre caminhos absolutos para referenciar o `FEATURE_DIR`.
 - **Sem Interrupção**: Este processo é informativo e deve prosseguir automaticamente para a próxima fase após a conclusão.
 - **Prioridade de Memória**: Nunca armazene código da aplicação dentro da pasta `.specify/`.
+
+- **Seguir Guias Comuns Antes de Gerar Artefatos**: Antes de criar ou atualizar quaisquer arquivos em `.specify/memory/`, carregue e siga os guias em `.specify/memory/common/` (por exemplo, `content-validation.md`, `ascii-diagram-standards.md`). Valide todo conteúdo gerado (Mermaid, diagramas ASCII, blocos de código, YAML/JSON) conforme esses guias. Não grave artefatos não validados; se a validação falhar, use a alternativa em texto (fallback), registre o erro em `.specify/memory/audit.md` e informe o usuário.
